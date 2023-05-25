@@ -1,0 +1,53 @@
+<%- include('partials/header.ejs') %>
+<style>
+  body {
+    background-color: #f7f7f7;
+  }
+
+  .add-form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 70vh;
+  }
+
+  .form-control:focus {
+    border-color: #6c757d;
+    box-shadow: none;
+  }
+
+  .form-control::placeholder {
+    color: #b0b0b0;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0062cc;
+    border-color: #005cbf;
+  }
+
+  .btn-primary:focus {
+    box-shadow: none;
+  }
+
+  .btn-primary:active {
+    background-color: #005cbf;
+    border-color: #0052cc;
+  }
+</style>
+<div class="container mt-5 mb-5">
+    <form method="POST" class="add-form" action="/addcategory">
+        <h1 class="text-center mb-4">Add Category</h1>
+        <div class="mb-3">
+          <label for="category-title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="category-title" name="title" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Category</button>
+    </form>
+</div>
+<%- include('partials/footer.ejs') %>

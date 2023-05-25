@@ -1,0 +1,65 @@
+<%- include('partials/header.ejs') %>
+<style>
+  body {
+    background-color: #f7f7f7;
+  }
+
+  .add-form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-control:focus {
+    border-color: #6c757d;
+    box-shadow: none;
+  }
+
+  .form-control::placeholder {
+    color: #b0b0b0;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0062cc;
+    border-color: #005cbf;
+  }
+
+  .btn-primary:focus {
+    box-shadow: none;
+  }
+
+  .btn-primary:active {
+    background-color: #005cbf;
+    border-color: #0052cc;
+  }
+</style>
+<div class="container mt-5 mb-5">
+  <form class="add-form" method="POST" action="/add" enctype="multipart/form-data">
+    <h1 class="text-center mb-4">Add Post</h1>
+    <div class="mb-3">
+      <label for="post-title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="post-title" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="post-description" class="form-label">Description</label>
+      <textarea class="form-control" id="post-description" name="desc" rows="5" required></textarea>
+    </div>
+    <select class="form-select mb-3" aria-label="Default select example" name="catg">
+      <% catgs.forEach((catg) => { %>
+      <option><%= catg.Title %></option>
+      <% }) %>
+    </select>
+    <div class="mb-3">
+      <label for="post-image" class="form-label">Image</label>
+      <input type="file" class="form-control" id="post-image" name="image" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<%- include('partials/footer.ejs') %>

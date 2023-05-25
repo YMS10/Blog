@@ -1,0 +1,146 @@
+<%- include('partials/header.ejs') %>
+<link rel="stylesheet" href="css/home.css">
+<style>
+    .view {
+        display: flex;
+        justify-content: space-between;
+      align-items: center;
+    }
+</style>
+<!-- Best Posts -->
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="imgs/caro1.jpg" class="d-block w-100 caro" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>YMSTUDIO</h5>
+          <p>The Best Full Stack Blog In The World</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="imgs/caro2.jpg" class="d-block w-100 caro" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>ALL Categories</h5>
+          <p>In This Blog You Will Find Any Post You Need In Any Category</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Latest Posts -->
+<div class="m-3">
+  <h2 class="latest"><span>Latest Posts</span></h2>
+  <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+    <% posts.forEach((post) => { %>
+    <div class="col">
+      <div class="card">
+        <% if (post.Image && post.Image.data) { %>
+          <img src="data:<%=post.Image.contentType%>;base64, <%=post.Image.data.toString('base64')%>" class="card-img-top" alt="...">
+          <% } %>
+        <div class="card-body">
+          <div class="view">
+            <h5 class="card-title"><%= post.Title %></h5>
+            <a href="/post/<%=post._id%>" class="btn btn-outline-primary"><span>View Details</span></a>
+        </div>
+          <p class="card-text"><%= post.Desc %></p>
+          <small><%= post.createdAt.toISOString().substring(0, 10) %></small>
+        </div>
+        <div class="card-footer">
+          <small class="text-body-secondary"><%= post.Catg %></small>
+      </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <div class="join_us bg-dark">
+    <div class="img">
+      <style>
+        .img{
+          width: 50%;
+          /* height: 100%; */
+        }
+        .imgf{
+          width: 100%;
+          height: 100%;
+        }
+        .join{
+          width: 50%;
+        }
+
+        .join_card{
+          width: 100%;
+        }
+        .join_us{
+          display: flex;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        @media (max-width: 920px){
+          .join_us{
+            display: block;
+          }
+          .img{
+            width: 100%;
+          }
+          .join{
+            width: 100%;
+          }
+        }
+      </style>
+      <img src="imgs/join_us.jpg" alt="" class="imgf img-fluid">
+    </div>
+    <div class="container bg-dark py-5 join">
+      <div class="row">
+        <div class="col-lg-8 mx-auto join_card">
+          <div class="card shadow-lg border-0 join_card">
+            <div class="card-body p-4 p-sm-5 join_card">
+              <h2 class="card-title text-center mb-4">Join Us</h2>
+              <form>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" required>
+                  <label for="inputEmail">Email Address</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+                <button class="btn btn-primary btn-lg w-100" type="submit">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container bg-light py-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto join_card">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-4 p-sm-5">
+            <h2 class="card-title text-center mb-4">What Is The Weather</h2>
+            <form method="POST" action="/weather">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="cityName" id="inputEmail" placeholder="Email Address" required>
+                <label for="inputEmail">City Name: </label>
+              </div>
+              <button class="btn btn-primary btn-lg w-100" type="submit">Look</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer.ejs') %>

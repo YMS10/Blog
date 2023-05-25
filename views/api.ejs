@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+<div class="fixed-center">
+    <div class="card w-100">
+      <div class="card-body">
+        <h5 class="card-title">Current Weather</h5>
+        <div class="row">
+          <div class="col-4">
+            <img src="https://openweathermap.org/img/wn/<%= icon %>.png" alt="Weather Icon" style="width: 50%;">
+          </div>
+          <div class="col-8" style="align-items: center;">
+            <h6 class="card-subtitle mb-2 text-muted"><%= query %></h6>
+            <p class="card-text"><%= desc %></p>
+            <p class="card-text"><%= temp %>&deg;C</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- include('partials/footer') %>

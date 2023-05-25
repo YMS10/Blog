@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+}
+.caro{
+    height: 500px;
+}
+.card-img-top{
+    height: 230px;
+}
+.latest{
+    border-left: 15px solid rgb(66, 209, 66);
+    font-size: 26px;
+}
+.latest span{
+    margin-left: 5px;
+}

@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+<style>
+    body {
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+      margin-top: 40px;
+    }
+</style>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+
+            <!-- Post Image -->
+            <% if (post.Image && post.Image.data) { %>
+                <img src="data:<%=post.Image.contentType%>;base64, <%=post.Image.data.toString('base64')%>" class="img-fluid mb-4" alt="Post Image">
+            <% } %>
+
+            <!-- Post Title -->
+            <h1 class="mb-4"><%= post.Title %></h1>
+
+            <!-- Post Category -->
+            <span class="badge bg-primary mb-3"><%= post.Catg %></span>
+
+            <!-- Post Date and Author -->
+            <p class="text-muted mb-3">Posted on <%= post.createdAt %></p>
+
+            <!-- Post Content -->
+            <p><%= post.Desc %></p>
+            
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>

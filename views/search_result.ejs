@@ -1,0 +1,57 @@
+<%- include('partials/header.ejs') %>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: all .3s ease-in-out;
+    }
+    img{
+        height: 250px;
+    }
+    .view {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<div class="row" style="width: 97%; margin: 20px; background-color: #f7f7f7;">
+    <div class="col-10">
+      <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+      <% posts.forEach((post) => { %>
+        <div class="col">
+          <div class="card">
+            <% if (post.Image && post.Image.data) { %>
+              <img src="data:<%=post.Image.contentType%>;base64, <%=post.Image.data.toString('base64')%>" class="card-img-top" alt="...">
+            <% } %>
+            <div class="card-body">
+              <div class="view">
+                <h5 class="card-title"><%= post.Title %></h5>
+                <a href="/post/<%=post._id%>" class="btn btn-outline-primary"><span>View Details</span></a>
+              </div>
+              <!-- <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+              <small><%= post.createdAt.toISOString().substring(0, 10) %></small>
+            </div>
+            <div class="card-footer">
+              <small class="card-text-secondary"><%= post.Catg %></small>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+      </div>
+    </div>
+    <div class="col-2"  style="padding: 0; background-color: white;">
+      <form action="/filter-search" method="POST">
+        <% catgs.forEach(catg => { %>
+          <div class="filters">
+            <!-- <input type="checkbox" class="filter" name="category" id="<%= catg.Title %>" value="<%= catg.Title %>" onclick="filter()">
+            <label for="<%= catg.Title %>"><%= catg.Title %></label> -->
+            <!-- <a href="" type="submit"><%= catg.Title %></a> -->
+            <button type="submit" class="mt-2" style="border: none; background-color: white; text-decoration: underline; color: rgb(65, 65, 199); margin: 20px;" name="category" value="<%= catg.Title %>"><%= catg.Title %></button>
+          </div>
+        <% }); %>
+      </form>
+    </div>
+  </div>
+<%- include('partials/footer.ejs') %>
